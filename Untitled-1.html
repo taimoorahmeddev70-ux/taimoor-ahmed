@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taimoor Ahmed — Graphic Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f4f0e8;
+    --accent: #e8410a;
+    --accent2: #1a1a2e;
+    --muted: #7a7570;
+    --rule: rgba(13,13,13,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+    mix-blend-mode: multiply;
+  }
+  .cursor-ring {
+    width: 40px; height: 40px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.18s ease, width 0.3s, height 0.3s;
+  }
+  body:hover .cursor { opacity: 1; }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 4rem;
+    border-bottom: 0.5px solid var(--rule);
+    background: var(--paper);
+    mix-blend-mode: normal;
+  }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 0.65rem 1.4rem;
+    cursor: none;
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--accent); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    padding: 10rem 4rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 4rem;
+    border-bottom: 0.5px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28vw;
+    color: rgba(13,13,13,0.04);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: -0.02em;
+    user-select: none;
+  }
+  .hero-left { position: relative; z-index: 2; }
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px; height: 1px;
+    background: var(--accent);
+  }
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 11vw, 10rem);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero-name span { color: var(--accent); }
+  .hero-desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 400px;
+    font-weight: 300;
+  }
+  .hero-right {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: flex-end; gap: 3rem;
+  }
+  .hero-geo {
+    width: 280px; height: 280px;
+    position: relative;
+  }
+  .hero-geo svg { width: 100%; height: 100%; }
+  .hero-stats {
+    display: flex; gap: 3rem;
+    border-top: 0.5px solid var(--rule);
+    padding-top: 2rem;
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .stat-num span { color: var(--accent); font-size: 2rem; }
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+  .scroll-hint {
+    position: absolute; bottom: 3rem; left: 4rem;
+    display: flex; align-items: center; gap: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    z-index: 2;
+  }
+  .scroll-line {
+    width: 60px; height: 1px;
+    background: var(--muted);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    width: 100%; height: 100%;
+    background: var(--accent);
+    animation: slide 2s infinite;
+  }
+  @keyframes slide { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+  /* Marquee */
+  .marquee-wrap {
+    border-bottom: 0.5px solid var(--rule);
+    overflow: hidden;
+    background: var(--ink);
+    padding: 1rem 0;
+  }
+  .marquee {
+    display: flex; gap: 4rem;
+    animation: marquee 18s linear infinite;
+    white-space: nowrap;
+    width: max-content;
+  }
+  .marquee-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+    color: var(--paper);
+    opacity: 0.4;
+    flex-shrink: 0;
+  }
+  .marquee-item.accent { color: var(--accent); opacity: 1; }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* Services */
+  .section { padding: 8rem 4rem; border-bottom: 0.5px solid var(--rule); }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--rule); }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin-bottom: 4rem;
+    color: var(--ink);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 0.5px solid var(--rule);
+  }
+  .service-card {
+    padding: 3rem 2.5rem;
+    border-right: 0.5px solid var(--rule);
+    position: relative;
+    transition: background 0.3s;
+    overflow: hidden;
+  }
+  .service-card:last-child { border-right: none; }
+  .service-card:hover { background: var(--ink); }
+  .service-card:hover .service-num,
+  .service-card:hover .service-title,
+  .service-card:hover .service-desc { color: var(--paper); }
+  .service-card:hover .service-line { background: var(--accent); }
+  .service-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-bottom: 3rem;
+    transition: color 0.3s;
+  }
+  .service-icon {
+    margin-bottom: 1.5rem;
+  }
+  .service-icon svg { width: 40px; height: 40px; }
+  .service-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    transition: color 0.3s;
+  }
+  .service-line { width: 30px; height: 2px; background: var(--accent); margin-bottom: 1.5rem; transition: background 0.3s; }
+  .service-desc { font-size: 14px; line-height: 1.7; color: var(--muted); transition: color 0.3s; }
+
+  /* Work */
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .work-item {
+    aspect-ratio: 4/3;
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+  }
+  .work-item:first-child { grid-column: 1 / -1; aspect-ratio: 16/7; }
+  .work-pattern {
+    width: 100%; height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .work-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 2.5rem;
+    background: linear-gradient(to top, rgba(13,13,13,0.9) 0%, transparent 100%);
+    transform: translateY(30%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .work-item:hover .work-overlay { transform: translateY(0); }
+  .work-cat {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .work-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: #f4f0e8;
+    letter-spacing: 0.02em;
+  }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+    height: 520px;
+  }
+  .about-bg-block {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 85%; height: 88%;
+    background: var(--ink);
+  }
+  .about-accent-block {
+    position: absolute;
+    top: 0; right: 0;
+    width: 60%; height: 60%;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .about-mono {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 7rem;
+    color: rgba(244,240,232,0.15);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .about-initials {
+    position: absolute;
+    bottom: 3rem; left: 3rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem;
+    color: var(--paper);
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+  .geo-float {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .about-content {}
+  .about-bio {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--ink);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+  }
+  .about-bio strong { font-weight: 500; }
+  .about-detail {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 3rem;
+  }
+  .skills-list {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    margin-bottom: 3rem;
+  }
+  .skill-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 0.5px solid var(--rule);
+    padding: 0.5rem 1rem;
+    color: var(--muted);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-arrow {
+    width: 20px; height: 1px;
+    background: currentColor;
+    position: relative;
+  }
+  .btn-arrow::after {
+    content: '';
+    position: absolute;
+    right: 0; top: -3px;
+    width: 6px; height: 6px;
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+    transform: rotate(45deg);
+  }
+
+  /* Process */
+  .process-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 0.5px solid var(--rule); }
+  .process-step {
+    padding: 3rem 2rem;
+    border-right: 0.5px solid var(--rule);
+    position: relative;
+  }
+  .process-step:last-child { border-right: none; }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: rgba(13,13,13,0.08);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .step-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.02em;
+  }
+  .step-desc { font-size: 13px; line-height: 1.7; color: var(--muted); }
+
+  /* Testimonials */
+  .testimonials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .testimonial {
+    padding: 3rem;
+    border: 0.5px solid var(--rule);
+    position: relative;
+  }
+  .quote-mark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem;
+    color: var(--accent);
+    line-height: 0.7;
+    margin-bottom: 1.5rem;
+  }
+  .testimonial-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--ink);
+    margin-bottom: 2rem;
+    font-style: italic;
+    font-weight: 300;
+  }
+  .testimonial-author {
+    display: flex; align-items: center; gap: 1rem;
+    border-top: 0.5px solid var(--rule);
+    padding-top: 1.5rem;
+  }
+  .author-avatar {
+    width: 40px; height: 40px;
+    background: var(--ink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--paper);
+    flex-shrink: 0;
+  }
+  .author-name { font-weight: 500; font-size: 14px; }
+  .author-role { font-size: 12px; color: var(--muted); font-family: 'Space Mono', monospace; letter-spacing: 0.05em; }
+
+  /* Contact */
+  .contact-section {
+    padding: 8rem 4rem;
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .contact-left .section-label { color: var(--accent); }
+  .contact-left .section-label::after { background: rgba(244,240,232,0.1); }
+  .contact-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 0.95;
+    color: var(--paper);
+    margin-bottom: 2rem;
+  }
+  .contact-title span { color: var(--accent); }
+  .contact-desc { font-size: 15px; line-height: 1.7; color: rgba(244,240,232,0.5); margin-bottom: 3rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: rgba(244,240,232,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+    padding-bottom: 1rem;
+    border-bottom: 0.5px solid rgba(244,240,232,0.1);
+  }
+  .contact-link:hover { color: var(--accent); }
+  .contact-link-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,240,232,0.25); }
+  .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(244,240,232,0.35);
+  }
+  .form-input, .form-textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 0.5px solid rgba(244,240,232,0.2);
+    color: var(--paper);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    padding: 0.75rem 0;
+    outline: none;
+    transition: border-color 0.2s;
+    font-weight: 300;
+    resize: none;
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(244,240,232,0.2); }
+  .form-input:focus, .form-textarea:focus { border-bottom-color: var(--accent); }
+  .form-textarea { min-height: 100px; }
+  .form-submit {
+    align-self: flex-start;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: var(--paper);
+    border: none;
+    padding: 1rem 2.5rem;
+    cursor: none;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: #c73508; }
+
+  /* Footer */
+  footer {
+    background: var(--ink);
+    border-top: 0.5px solid rgba(244,240,232,0.08);
+    padding: 2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: rgba(244,240,232,0.25);
+  }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: rgba(244,240,232,0.25);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* Animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 8rem 2rem 5rem; }
+    .hero-right { align-items: flex-start; }
+    .section { padding: 5rem 2rem; }
+    .services-grid, .work-grid, .about-grid, .process-list, .testimonials-grid { grid-template-columns: 1fr; }
+    .work-item:first-child { aspect-ratio: 4/3; }
+    .contact-section { grid-template-columns: 1fr; padding: 5rem 2rem; }
+    footer { flex-direction: column; gap: 1rem; padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Taimoor Ahmed</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">TA</div>
+  <div class="hero-left">
+    <div class="hero-tag">Available for work &nbsp;·&nbsp; Karachi, PK</div>
+    <h1 class="hero-name">Taimoor<br><span>Ahmed</span></h1>
+    <p class="hero-desc">Graphic Designer crafting brands that speak before words do. Bold concepts. Purposeful aesthetics. Lasting impressions.</p>
+  </div>
+  <div class="hero-right">
+    <div class="hero-geo">
+      <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="20" width="240" height="240" fill="none" stroke="#0d0d0d" stroke-width="0.5"/>
+        <rect x="50" y="50" width="180" height="180" fill="none" stroke="#0d0d0d" stroke-width="0.5" transform="rotate(15, 140, 140)"/>
+        <rect x="80" y="80" width="120" height="120" fill="none" stroke="#e8410a" stroke-width="1.5" transform="rotate(30, 140, 140)"/>
+        <circle cx="140" cy="140" r="50" fill="#0d0d0d"/>
+        <circle cx="140" cy="140" r="35" fill="none" stroke="#f4f0e8" stroke-width="0.5"/>
+        <text x="140" y="147" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="22" fill="#f4f0e8" letter-spacing="2">GD</text>
+        <circle cx="140" cy="140" r="5" fill="#e8410a"/>
+        <line x1="20" y1="140" x2="80" y2="140" stroke="#e8410a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="200" y1="140" x2="260" y2="140" stroke="#e8410a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="140" y1="20" x2="140" y2="80" stroke="#e8410a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="140" y1="200" x2="140" y2="260" stroke="#e8410a" stroke-width="0.5" opacity="0.5"/>
+        <polygon points="140,30 150,50 130,50" fill="none" stroke="#0d0d0d" stroke-width="0.5"/>
+        <polygon points="250,140 230,130 230,150" fill="none" stroke="#0d0d0d" stroke-width="0.5"/>
+        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 140 140" to="360 140 140" dur="30s" repeatCount="indefinite" additive="sum"/>
+      </svg>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">6<span>+</span></div>
+        <div class="stat-label">Years Exp.</div>
+      </div>
+      <div>
+        <div class="stat-num">80<span>+</span></div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div>
+        <div class="stat-num">40<span>+</span></div>
+        <div class="stat-label">Clients</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span class="marquee-item">Brand Identity</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Visual Design</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Typography</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Motion Graphics</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Packaging</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">UI Design</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Print</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Brand Identity</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Visual Design</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Typography</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Motion Graphics</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Packaging</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">UI Design</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Print</span>
+    <span class="marquee-item accent">✦</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-label">What I Do</div>
+  <h2 class="section-title fade-in">Design That<br>Moves People</h2>
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <div class="service-num">01</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="14" stroke="currentColor" stroke-width="1"/>
+          <circle cx="20" cy="20" r="7" fill="#e8410a"/>
+          <line x1="6" y1="20" x2="34" y2="20" stroke="currentColor" stroke-width="0.5"/>
+          <line x1="20" y1="6" x2="20" y2="34" stroke="currentColor" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="service-title">Brand Identity</div>
+      <div class="service-line"></div>
+      <p class="service-desc">Complete visual identity systems — from logo conception to brand guidelines, ensuring every touchpoint speaks the same language.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">02</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="6" width="28" height="22" stroke="currentColor" stroke-width="1"/>
+          <rect x="12" y="12" width="16" height="10" fill="#e8410a"/>
+          <line x1="6" y1="32" x2="34" y2="32" stroke="currentColor" stroke-width="1"/>
+          <line x1="16" y1="32" x2="16" y2="36" stroke="currentColor" stroke-width="1"/>
+          <line x1="24" y1="32" x2="24" y2="36" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="service-title">UI / Digital</div>
+      <div class="service-line"></div>
+      <p class="service-desc">Interface design with purpose — digital experiences that balance beauty and function for web and mobile platforms.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">03</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="4" width="24" height="32" stroke="currentColor" stroke-width="1"/>
+          <rect x="13" y="10" width="14" height="3" fill="#e8410a"/>
+          <line x1="13" y1="17" x2="27" y2="17" stroke="currentColor" stroke-width="0.5"/>
+          <line x1="13" y1="21" x2="27" y2="21" stroke="currentColor" stroke-width="0.5"/>
+          <line x1="13" y1="25" x2="22" y2="25" stroke="currentColor" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="service-title">Print & Editorial</div>
+      <div class="service-line"></div>
+      <p class="service-desc">Magazines, books, posters, and marketing materials that command attention and communicate with clarity and intention.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="section" id="work">
+  <div class="section-label">Selected Projects</div>
+  <h2 class="section-title fade-in">Recent<br>Work</h2>
+  <div class="work-grid">
+    <div class="work-item fade-in">
+      <div class="work-pattern">
+        <svg viewBox="0 0 900 400" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="900" height="400" fill="#1a1a2e"/>
+          <g opacity="0.4">
+            <rect x="0" y="0" width="300" height="400" fill="#e8410a" opacity="0.15"/>
+            <line x1="0" y1="0" x2="900" y2="400" stroke="#e8410a" stroke-width="0.5"/>
+            <line x1="900" y1="0" x2="0" y2="400" stroke="#e8410a" stroke-width="0.5"/>
+            <rect x="200" y="80" width="500" height="240" fill="none" stroke="#f4f0e8" stroke-width="0.5"/>
+            <rect x="250" y="120" width="400" height="160" fill="none" stroke="#e8410a" stroke-width="0.5"/>
+          </g>
+          <text x="450" y="185" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="90" fill="#f4f0e8" opacity="0.9" letter-spacing="8">NEXUS</text>
+          <text x="450" y="230" text-anchor="middle" font-family="'Space Mono',monospace" font-size="11" fill="#e8410a" letter-spacing="10">BRAND IDENTITY</text>
+        </svg>
+      </div>
+      <div class="work-overlay">
+        <div class="work-cat">Brand Identity · 2024</div>
+        <div class="work-title">Nexus — Tech Startup</div>
+      </div>
+    </div>
+    <div class="work-item fade-in">
+      <div class="work-pattern">
+        <svg viewBox="0 0 500 375" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="500" height="375" fill="#0d1b0f"/>
+          <circle cx="250" cy="187" r="150" fill="none" stroke="#4caf50" stroke-width="0.5"/>
+          <circle cx="250" cy="187" r="100" fill="#1a3a1e"/>
+          <circle cx="250" cy="187" r="60" fill="#e8410a"/>
+          <text x="250" y="197" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="28" fill="#f4f0e8" letter-spacing="3">VERDE</text>
+          <line x1="100" y1="187" x2="400" y2="187" stroke="#4caf50" stroke-width="0.5" opacity="0.4"/>
+          <line x1="250" y1="37" x2="250" y2="337" stroke="#4caf50" stroke-width="0.5" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="work-overlay">
+        <div class="work-cat">Packaging · 2024</div>
+        <div class="work-title">Verde — Organic Brand</div>
+      </div>
+    </div>
+    <div class="work-item fade-in">
+      <div class="work-pattern">
+        <svg viewBox="0 0 500 375" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="500" height="375" fill="#2a0a0a"/>
+          <rect x="0" y="0" width="500" height="5" fill="#e8410a"/>
+          <rect x="0" y="370" width="500" height="5" fill="#e8410a"/>
+          <text x="50" y="160" font-family="'Bebas Neue',sans-serif" font-size="130" fill="rgba(232,65,10,0.15)" letter-spacing="-5">ART</text>
+          <rect x="50" y="60" width="3" height="200" fill="#e8410a"/>
+          <text x="70" y="120" font-family="'Bebas Neue',sans-serif" font-size="50" fill="#f4f0e8" letter-spacing="4">MIRAGE</text>
+          <text x="70" y="145" font-family="'Space Mono',monospace" font-size="9" fill="#e8410a" letter-spacing="6">ANNUAL EXHIBITION</text>
+          <text x="70" y="200" font-family="'DM Sans',sans-serif" font-size="13" fill="rgba(244,240,232,0.4)" font-weight="300">Karachi Arts Council</text>
+          <text x="70" y="220" font-family="'DM Sans',sans-serif" font-size="13" fill="rgba(244,240,232,0.4)" font-weight="300">14 – 28 March 2024</text>
+        </svg>
+      </div>
+      <div class="work-overlay">
+        <div class="work-cat">Editorial · 2024</div>
+        <div class="work-title">Mirage — Exhibition Poster</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-label">About Me</div>
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-bg-block"></div>
+      <div class="about-accent-block">
+        <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="100,10 190,55 190,145 100,190 10,145 10,55" fill="none" stroke="rgba(244,240,232,0.15)" stroke-width="1"/>
+          <polygon points="100,30 170,62 170,138 100,170 30,138 30,62" fill="none" stroke="rgba(244,240,232,0.1)" stroke-width="0.5"/>
+          <circle cx="100" cy="100" r="35" fill="rgba(244,240,232,0.1)"/>
+          <text x="100" y="108" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="18" fill="#f4f0e8" letter-spacing="2">TA</text>
+        </svg>
+      </div>
+      <div class="about-initials">T<br>A</div>
+    </div>
+    <div class="about-content">
+      <h2 class="section-title" style="margin-bottom: 2rem; font-size: clamp(2.5rem,4vw,4rem);">Design Is<br>My Language</h2>
+      <p class="about-bio">I'm <strong>Taimoor Ahmed</strong>, a graphic designer based in Karachi with a passion for distilling complex ideas into clean, powerful visual stories.</p>
+      <p class="about-detail">With 6+ years of experience working across brand identity, digital design, and print, I've partnered with startups and established businesses alike — always bringing the same obsessive attention to craft and concept. I believe good design isn't just seen; it's felt.</p>
+      <div class="skills-list">
+        <span class="skill-tag">Adobe Illustrator</span>
+        <span class="skill-tag">Photoshop</span>
+        <span class="skill-tag">InDesign</span>
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">After Effects</span>
+        <span class="skill-tag">Brand Strategy</span>
+        <span class="skill-tag">Typography</span>
+        <span class="skill-tag">Motion</span>
+        <span class="skill-tag">Packaging</span>
+      </div>
+      <a href="#contact" class="btn-primary">Let's Work Together <div class="btn-arrow"></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section">
+  <div class="section-label">How I Work</div>
+  <h2 class="section-title fade-in">The Process</h2>
+  <div class="process-list">
+    <div class="process-step fade-in">
+      <div class="step-num">01</div>
+      <div class="step-title">Discover</div>
+      <p class="step-desc">Deep-dive into your brand, market, and audience. Asking the right questions before touching a single pixel.</p>
+    </div>
+    <div class="process-step fade-in">
+      <div class="step-num">02</div>
+      <div class="step-title">Strategise</div>
+      <p class="step-desc">Building a conceptual foundation — moodboards, direction, and a visual language that aligns with your goals.</p>
+    </div>
+    <div class="process-step fade-in">
+      <div class="step-num">03</div>
+      <div class="step-title">Create</div>
+      <p class="step-desc">Bringing concepts to life with precision and intention. Iterating through feedback until it's exactly right.</p>
+    </div>
+    <div class="process-step fade-in">
+      <div class="step-num">04</div>
+      <div class="step-title">Deliver</div>
+      <p class="step-desc">Polished files, brand guidelines, and full handover. Designed to be used, not just admired.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="section-label">Client Words</div>
+  <h2 class="section-title fade-in">What They Say</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial fade-in">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">Taimoor didn't just design our logo — he understood our entire vision and turned it into something we're proud to put on everything. The rebrand transformed how clients perceive us.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">SF</div>
+        <div>
+          <div class="author-name">Sara Farooq</div>
+          <div class="author-role">CEO, Meridian Studio</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial fade-in">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">Working with Taimoor is effortless. He brings ideas you didn't know you needed and the execution is always flawless. Our packaging now genuinely stands out on shelves.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">AK</div>
+        <div>
+          <div class="author-name">Ali Khan</div>
+          <div class="author-role">Founder, Zara Organics</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-left">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="contact-title">Let's Build<br>Something <span>Great</span></h2>
+    <p class="contact-desc">Have a project in mind? I'd love to hear about it. Let's talk design, brand, and how we can make your vision real.</p>
+    <div class="contact-links">
+      <a href="mailto:taimoor@example.com" class="contact-link">
+        <div>
+          <div class="contact-link-label">Email</div>
+          taimoor@example.com
+        </div>
+      </a>
+      <a href="#" class="contact-link">
+        <div>
+          <div class="contact-link-label">Behance</div>
+          behance.net/taimoorahmed
+        </div>
+      </a>
+      <a href="#" class="contact-link">
+        <div>
+          <div class="contact-link-label">LinkedIn</div>
+          linkedin.com/in/taimoorahmed
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="contact-form">
+    <div class="form-group">
+      <label class="form-label">Your Name</label>
+      <input type="text" class="form-input" placeholder="Ali Hassan">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email Address</label>
+      <input type="email" class="form-input" placeholder="ali@company.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Project Brief</label>
+      <textarea class="form-textarea" placeholder="Tell me about your project…"></textarea>
+    </div>
+    <button class="form-submit">Send Message →</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2025 Taimoor Ahmed — Graphic Designer, Karachi</div>
+  <div class="footer-links">
+    <a href="#">Behance</a>
+    <a href="#">Instagram</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">Dribbble</a>
+  </div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+  function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); }
+  animRing();
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
